@@ -9,9 +9,7 @@ const api = {
 
 export default class WeatherContainer extends Component {
   state = {
-    data: [],
-    iconCode: "",
-    selectedDay: 0
+    data: []
   };
 
   componentDidMount = () => {
@@ -23,10 +21,14 @@ export default class WeatherContainer extends Component {
       `${api.baseUrl}forecast?q=Copenhagen&units=metric&cnt=5&appid=${api.key}`
     );
     const data = await res.json();
-    this.setState({
-      data: data.list,
-      iconCode: data.list[this.state.selectedDay].weather[0].icon
-    });
+    this.setState(
+      {
+        data: data.list
+      },
+      () => {
+        console.log(data);
+      }
+    );
   };
 
   render() {
@@ -40,7 +42,7 @@ export default class WeatherContainer extends Component {
               return (
                 <WeatherCard
                   key={index}
-                  iconId={this.state.iconCode}
+                  iconId={el.weather[0].icon}
                   timeOfDay={
                     data[index].dt_txt.split(" ")[1].split(":")[0] +
                     ":" +

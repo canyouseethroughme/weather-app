@@ -20,7 +20,7 @@ class App extends Component {
             </ul>
             <ul>
               <a
-                href="https://github.com"
+                href="https://github.com/canyouseethroughme/weather-app"
                 target="_blank"
                 rel="noopener noreferrer"
               >
